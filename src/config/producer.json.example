@@ -1,0 +1,38 @@
+{
+  "appname": "producer",
+  "log": {
+    "level": "debug",
+    "path": "./logs/",
+    "filename": "producer.log"
+  },
+  "mqType": "kafka",
+  "kafka": [
+    "127.0.0.1:8080",
+    "127.0.0.1:8081"
+  ],
+  "kafkaTopic": {
+    "found_block": "found_block"
+  },
+  "enableCoin": [
+    "btc",
+    "eth",
+    "etc"
+  ],
+  "eth": {
+    "network": "regtest",
+    "node": [
+      "127.0.0.1:8080",
+      "127.0.0.1:8081"
+    ]
+  },
+  "btc": {
+    "network": "regtest",
+    "node": [
+    ]
+  },
+  "etc": {
+    "network": "regtest",
+    "node": [
+    ]
+  }
+}
