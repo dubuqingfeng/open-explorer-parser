@@ -17,6 +17,7 @@ import (
 )
 
 func init() {
+	// TODO flag
 	app := &cli.App{
 		Name:  "Producer",
 		Usage: "",
@@ -50,6 +51,7 @@ func main() {
 	fmt.Printf("enable processor: %#v\n", config.Config.EnableCoin)
 
 	multiCoin := make([]processors.Proccessor, 0)
+
 	for _, value := range config.Config.EnableCoin {
 		processor := newProccessor(value)
 		if processor != nil {
@@ -57,9 +59,12 @@ func main() {
 		}
 	}
 
+	// WaitGroup
 	for index, value := range multiCoin {
 		// go func
 		fmt.Printf("arr[%d]=%d \n", index, value.Parse("test"))
+		// select
+		// write to kafka
 	}
 }
 
@@ -79,6 +84,7 @@ func initProducerLog() {
 	if err != nil {
 		log.Errorf("init producer logger error. %+v", errors.WithStack(err))
 	}
+
 	log.SetLevel(level)
 
 	ConfigLocalFilesystemLogger(config.Config.Log.Path, config.Config.Log.Filename, 7*time.Hour*24, time.Second*20)

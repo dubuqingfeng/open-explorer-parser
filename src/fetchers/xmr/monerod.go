@@ -1,15 +1,15 @@
-package eth
+package xmr
 
 import (
 	"github.com/dubuqingfeng/explorer-parser/src/fetchers"
 	"fmt"
 )
 
-type GethFetcher struct {
+type XMRFetcher struct {
 	fetchers.Fetcher
 }
 
-func (this GethFetcher) Fetch(title string) (bool, string) {
+func (this XMRFetcher) Fetch(title string) (bool, string) {
 	fmt.Printf("test")
 	// async rpc client call
 	return false, "test"
