@@ -16,6 +16,7 @@ func NewETHProcessor() *ETHProcessor {
 
 func (this *ETHProcessor) Parse(message string) bool {
 	// Load Fetchers
+	log.WithField("coin_type", "ETH").Debug("Parse Start")
 	gethFetcher := eth.GethFetcher{}
 	result, reason := gethFetcher.Fetch("test")
 	log.WithField("result", result).WithField("reason", reason).Info("test")

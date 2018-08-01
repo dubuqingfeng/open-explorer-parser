@@ -1,14 +1,28 @@
 package rpc
 
-func NewClients() []*RpcClient {
+import (
+	"fmt"
+)
+
+type rpcClients struct {
+	clients []*RpcClient
+}
+
+func NewClients() *rpcClients {
 	// Need to support custom clients
 	clients := make([]*RpcClient, 0)
 	rpc := newRPCClient("address", "user", "passwd", false)
 	clients = append(clients, rpc)
-	return clients
+	return &rpcClients{clients: clients}
 }
 
-func (this *RpcClient) Call(rpc RpcClient) (message string, err error) {
-	// waitgroup
+func (this *rpcClients) Call(method string) (message string, err error) {
+	fmt.Println("rpc clients call")
+	for _, value := range this.clients {
+		// avoid goroutine leak
+		go func(client *RpcClient, method string) {
+			client.call(method, "param")
+		}(value, method)
+	}
 	return "test", nil
 }

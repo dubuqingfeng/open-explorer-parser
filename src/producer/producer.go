@@ -50,32 +50,38 @@ func main() {
 	// Load the processor by configuration
 	fmt.Printf("enable processor: %#v\n", config.Config.EnableCoin)
 
-	multiCoin := make([]processors.Proccessor, 0)
+	multiCoin := make([]processors.Processor, 0)
 
 	for _, value := range config.Config.EnableCoin {
-		processor := newProccessor(value)
+		processor := newProcessor(value)
 		if processor != nil {
 			multiCoin = append(multiCoin, processor)
 		}
 	}
 
-	// WaitGroup
-	for index, value := range multiCoin {
-		// go func
-		fmt.Printf("arr[%d]=%d \n", index, value.Parse("test"))
-		// select
-		// write to kafka
+	for {
+		for _, value := range multiCoin {
+			// go func
+			go func(processor processors.Processor) {
+				processor.Parse("test")
+			}(value)
+			// select, channel
+			// write to kafka
+		}
+		time.Sleep(1 * time.Second)
 	}
 }
 
-func newProccessor(coin string) processors.Proccessor {
+func newProcessor(coin string) processors.Processor {
 	switch coin {
 	case "btc":
 		return processors.NewBTCProcessor()
 	case "eth":
 		return processors.NewETHProcessor()
+	case "xmr":
+		return processors.NewXMRProcessor()
 	}
-	return nil;
+	return nil
 }
 
 // Init Log

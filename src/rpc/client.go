@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"time"
 	"bytes"
+	"fmt"
 )
 
 type RpcClient struct {
@@ -36,9 +37,10 @@ func newRPCClient(address string, user string, passwd string, ssl bool) *RpcClie
 	return client
 }
 
+// need add timeout limit
 func (this *RpcClient) call(method string, params interface{}) (response rpcResponse, err error) {
 	// build http request
-
+	fmt.Println("rpc client base call")
 	request := rpcRequest{time.Now().UnixNano(), "2.0", method, params}
 	payload, err := json.Marshal(request)
 	if err != nil {

@@ -1,5 +1,8 @@
 package processors
 
+import (
+	log "github.com/sirupsen/logrus"
+)
 type BTCProcessor struct {
 	status int
 	reason string
@@ -11,6 +14,7 @@ func NewBTCProcessor() *BTCProcessor {
 
 func (this *BTCProcessor) Parse(message string) bool {
 	// Load Fetchers
+	log.WithField("coin_type", "BTC").Debug("Parse Start")
 	return false
 }
 
