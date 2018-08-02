@@ -2,6 +2,18 @@ package config
 
 import "github.com/jinzhu/configor"
 
+type NodeConfig struct {
+	Address  string
+	User     string
+	Password string
+	SSL      bool
+}
+
+type CoinConfig struct {
+	Nodes   []NodeConfig
+	Network string
+}
+
 var Config = struct {
 	APPName string `default:"app name"`
 	Log struct {
@@ -10,6 +22,10 @@ var Config = struct {
 		Filename string `default:"producer.log"`
 	}
 	EnableCoin []string
+	ETH        CoinConfig
+	ETC        CoinConfig
+	XMR        CoinConfig
+	BTC        CoinConfig
 }{}
 
 func InitConfig(files string) {
