@@ -9,13 +9,15 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/pkg/errors"
+	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
 )
 
 type RpcClient struct {
 	address    string
 	user       string
-	passwd     string
+	password   string
 	ssl        bool
+	authType   string
 	httpClient *http.Client
 }
 
@@ -40,9 +42,16 @@ type rpcResult struct {
 }
 
 // Need to force open authentication
-func newRPCClient(address string, user string, passwd string, ssl bool) *RpcClient {
+func newRPCClient(nodeConfig config.NodeConfig) *RpcClient {
+	// if auth type is 'digest-2617' initial the client(https://godoc.org/github.com/bobziuchkovski/digest)
 	httpClient := &http.Client{}
-	client := &RpcClient{address: address, user: user, passwd: passwd, httpClient: httpClient}
+	client := &RpcClient{
+		address:    nodeConfig.Address,
+		user:       nodeConfig.User,
+		password:   nodeConfig.Password,
+		authType:   nodeConfig.AuthType,
+		httpClient: httpClient,
+	}
 	return client
 }
 
@@ -59,6 +68,7 @@ func (this *RpcClient) DoRequest(timer *time.Timer, req *http.Request) (*http.Re
 	case <-timer.C:
 		return nil, errors.New("Timeout")
 	}
+
 }
 
 // need add timeout limit
@@ -69,39 +79,53 @@ func (this *RpcClient) call(method string, params interface{}) (response rpcResp
 
 	request := rpcRequest{time.Now().UnixNano(), "2.0", method, params}
 	payload, err := json.Marshal(request)
-	fmt.Println(request)
 	if err != nil {
-		return
+		return rpcResponse{}, err
 	}
 
+	fmt.Println(this.address)
 	req, err := http.NewRequest("POST", this.address, bytes.NewBuffer(payload))
 	if err != nil {
 		log.Error(err)
-		return
+		return rpcResponse{}, err
 	}
 
-	//req.SetBasicAuth(this.user, this.passwd)
 	req.Header.Set("Content-Type", "application/json;charset=utf-8")
 	req.Header.Add("Accept", "application/json")
-	fmt.Println(this.user)
-	fmt.Println(this.passwd)
+	this.handleAuth(req)
+	fmt.Println(req.Header)
 	// Timer
 	resp, err := this.DoRequest(timer, req)
 
 	if err != nil {
 		log.Error(err)
-		return
+		return rpcResponse{}, err
 	}
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	fmt.Println(string(body))
 	if err != nil {
-		return
+		return rpcResponse{}, err
 	}
 
-	err = json.Unmarshal(body, &response)
-	return
+	//err = json.Unmarshal(body, &response)
+	return response, nil
+}
+
+func (this *RpcClient) handleAuth(r *http.Request) {
+	if this.authType == "" || this.authType == "none" || this.user == "" || this.password == "" {
+		return
+	}
+	switch this.authType {
+	case "base":
+		r.SetBasicAuth(this.user, this.password)
+		return
+	case "digest", "digest2617":
+		break
+	case "digest7616":
+		break
+	}
 }
 
 // get sync status, keep sync

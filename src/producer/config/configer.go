@@ -7,6 +7,7 @@ type NodeConfig struct {
 	User     string
 	Password string
 	SSL      bool
+	AuthType string
 }
 
 type CoinConfig struct {

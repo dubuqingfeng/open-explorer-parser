@@ -7,6 +7,7 @@ import (
 	"github.com/dubuqingfeng/explorer-parser/src/rpc"
 )
 
+// https://getmonero.org/resources/developer-guides/daemon-rpc.html
 type XMRFetcher struct {
 	NodeConfigs []config.NodeConfig
 	fetchers.Fetcher
@@ -15,18 +16,23 @@ type XMRFetcher struct {
 func (this XMRFetcher) Fetch(title string) (bool, string) {
 	fmt.Printf("test")
 	// async rpc client call
-	this.GetBlock("test")
+	this.GetBlockCount()
+	this.GetBlock(string(78923))
 	return false, "test"
 }
 
-func (this XMRFetcher) GetBlock(title string) (bool, string) {
-	fmt.Println(title)
-	this.RPCCall("get_block_count")
+func (this XMRFetcher) GetBlockCount() (bool, string) {
+	this.RPCCall("get_block_count", nil)
 	return false, "test"
 }
 
-func (this XMRFetcher) RPCCall(method string) {
+func (this XMRFetcher) GetBlock(height string) (bool, string) {
+	this.RPCCall("getblock", height)
+	return false, "test"
+}
+
+func (this XMRFetcher) RPCCall(method string, param interface{}) {
 	fmt.Println(method)
 	rpcClients := rpc.NewClients(this.NodeConfigs)
-	rpcClients.Call(method)
+	rpcClients.Call(method, param)
 }

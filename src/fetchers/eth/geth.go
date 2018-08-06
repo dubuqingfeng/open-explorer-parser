@@ -21,12 +21,12 @@ func (this GethFetcher) Fetch(title string) (bool, string) {
 
 func (this GethFetcher) GetBlock(title string) (bool, string) {
 	fmt.Println(title)
-	this.RPCCall("rpc client call method")
+	this.RPCCall("rpc client call method", "")
 	return false, "test"
 }
 
-func (this GethFetcher) RPCCall(method string) {
+func (this GethFetcher) RPCCall(method string, param interface{}) {
 	fmt.Println(method)
 	rpcClients := rpc.NewClients(this.NodeConfigs)
-	rpcClients.Call(method)
+	rpcClients.Call(method, param)
 }
