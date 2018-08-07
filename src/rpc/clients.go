@@ -1,7 +1,6 @@
 package rpc
 
 import (
-	"fmt"
 	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
 )
 
@@ -20,12 +19,14 @@ func NewClients(nodeConfigs []config.NodeConfig) *rpcClients {
 }
 
 func (this *rpcClients) Call(method string, param interface{}) (message string, err error) {
-	fmt.Println("rpc clients call")
 	for _, value := range this.clients {
 		result, err := value.call(method, param)
 		if err == nil {
-			return result.JSONRPC, nil
+			return string(result.Result), nil
 		}
+		// avoid goroutine leak
+		//go func(client *RpcClient, method string) {
+		//}(value, method)
 	}
 	return "test", nil
 }

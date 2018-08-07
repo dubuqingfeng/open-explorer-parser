@@ -7,7 +7,6 @@ import (
 	"encoding/json"
 	"time"
 	"bytes"
-	"fmt"
 	"github.com/pkg/errors"
 	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
 	"github.com/gabstv/httpdigest"
@@ -71,7 +70,6 @@ func newRPCClient(nodeConfig config.NodeConfig) *RpcClient {
 func (this *RpcClient) call(method string, params interface{}) (response rpcResponse, err error) {
 	// build http request
 	timer := time.NewTimer(2 * time.Second)
-	fmt.Println("rpc client base call")
 
 	request := rpcRequest{time.Now().UnixNano(), "2.0", method, params}
 	payload, err := json.Marshal(request)
@@ -82,7 +80,6 @@ func (this *RpcClient) call(method string, params interface{}) (response rpcResp
 
 	req, err := http.NewRequest("POST", this.address, bytes.NewBuffer(payload))
 	if err != nil {
-		log.Error(err)
 		return rpcResponse{}, err
 	}
 
@@ -91,11 +88,8 @@ func (this *RpcClient) call(method string, params interface{}) (response rpcResp
 	if this.authType == "base" && (this.user != "" || this.password != "") {
 		req.SetBasicAuth(this.user, this.password)
 	}
-	fmt.Println(req.Header)
 	// Timer
 	resp, err := this.DoRequest(timer, req)
-	fmt.Println(err)
-
 	if err != nil {
 		log.Error(err)
 		return rpcResponse{}, err
@@ -106,9 +100,16 @@ func (this *RpcClient) call(method string, params interface{}) (response rpcResp
 	if err != nil {
 		return rpcResponse{}, err
 	}
-	fmt.Println(string(body))
+	//fmt.Println(string(body))
+	err = json.Unmarshal(body, &response)
+	if err != nil {
+		return rpcResponse{}, err
+	}
 
-	//err = json.Unmarshal(body, &response)
+	if response.Error != nil {
+		return rpcResponse{}, errors.New("rpc call error")
+	}
+
 	return response, nil
 }
 
