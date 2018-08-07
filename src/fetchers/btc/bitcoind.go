@@ -12,26 +12,26 @@ type Bitcoind struct {
 	fetchers.Fetcher
 }
 
-func (this Bitcoind) Fetch(title string) (bool, string) {
-	fmt.Printf("test")
+func (fetcher Bitcoind) Fetch(title string) (bool, map[string]string) {
+	strings := make(map[string]string)
 	// async rpc client call
-	this.GetBlockCount()
-	this.GetBlock(string(78923))
+	_, getBlock := fetcher.GetBlock("78923")
+	strings["get_block"] = getBlock
+	return true, strings
+}
+
+func (fetcher Bitcoind) GetBlockCount() (bool, string) {
+	fetcher.RPCCall("get_block_count", nil)
 	return false, "test"
 }
 
-func (this Bitcoind) GetBlockCount() (bool, string) {
-	this.RPCCall("get_block_count", nil)
+func (fetcher Bitcoind) GetBlock(height string) (bool, string) {
+	fetcher.RPCCall("getblock", height)
 	return false, "test"
 }
 
-func (this Bitcoind) GetBlock(height string) (bool, string) {
-	this.RPCCall("getblock", height)
-	return false, "test"
-}
-
-func (this Bitcoind) RPCCall(method string, param interface{}) {
+func (fetcher Bitcoind) RPCCall(method string, param interface{}) {
 	fmt.Println(method)
-	rpcClients := rpc.NewClients(this.NodeConfigs)
+	rpcClients := rpc.NewClients(fetcher.NodeConfigs)
 	rpcClients.Call(method, param)
 }

@@ -1,6 +1,9 @@
 package config
 
-import "github.com/jinzhu/configor"
+import (
+	"github.com/jinzhu/configor"
+	"github.com/dubuqingfeng/explorer-parser/src/models/configs"
+)
 
 type NodeConfig struct {
 	Address  string
@@ -11,8 +14,10 @@ type NodeConfig struct {
 }
 
 type CoinConfig struct {
-	Nodes   []NodeConfig
-	Network string
+	Nodes       []NodeConfig
+	Network     string
+	PublishType string
+	PubConn     []configs.PubConnConfig
 }
 
 var Config = struct {
@@ -22,11 +27,13 @@ var Config = struct {
 		Path     string `default:"./logs/"`
 		Filename string `default:"producer.log"`
 	}
-	EnableCoin []string
-	ETH        CoinConfig
-	ETC        CoinConfig
-	XMR        CoinConfig
-	BTC        CoinConfig
+	PublishType string
+	PubConn     []configs.PubConnConfig
+	EnableCoin  []string
+	ETH         CoinConfig
+	ETC         CoinConfig
+	XMR         CoinConfig
+	BTC         CoinConfig
 }{}
 
 func InitConfig(files string) {

@@ -20,3 +20,8 @@ export http_proxy=127.0.0.1:8118
 export https_proxy=127.0.0.1:8118
 ```
 
+## 本地启动 redis 服务器
+
+```
+docker run --name example-redis -p 6379:6379 -d redis
+```

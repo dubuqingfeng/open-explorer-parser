@@ -17,7 +17,6 @@ import (
 )
 
 func init() {
-	// TODO flag
 	app := &cli.App{
 		Name:  "Producer",
 		Usage: "",
@@ -90,7 +89,6 @@ func initProducerLog() {
 	}
 
 	log.SetLevel(level)
-
 	ConfigLocalFilesystemLogger(config.Config.Log.Path, config.Config.Log.Filename, 7*time.Hour*24, time.Second*20)
 }
 

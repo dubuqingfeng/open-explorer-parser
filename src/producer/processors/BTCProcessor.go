@@ -15,7 +15,7 @@ func NewBTCProcessor() *BTCProcessor {
 	return &BTCProcessor{}
 }
 
-func (this *BTCProcessor) Parse(message string) bool {
+func (processor *BTCProcessor) Parse(message string) bool {
 	// Load Fetchers
 	log.WithField("coin_type", "BTC").Debug("Parse Start")
 	go func() {
@@ -29,6 +29,6 @@ func (this *BTCProcessor) Parse(message string) bool {
 	return false
 }
 
-func (this *BTCProcessor) Finish(info string) (status int, reason string) {
-	return this.status, this.reason
+func (processor *BTCProcessor) Finish(info string) (status int, reason string) {
+	return processor.status, processor.reason
 }

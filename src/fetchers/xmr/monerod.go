@@ -7,42 +7,42 @@ import (
 )
 
 // https://getmonero.org/resources/developer-guides/daemon-rpc.html
-type XMRFetcher struct {
+type CoinXMRFetcher struct {
 	NodeConfigs []config.NodeConfig
 	fetchers.Fetcher
 }
 
-func (this XMRFetcher) Fetch(title string) (bool, map[string]string) {
+func (fetcher CoinXMRFetcher) Fetch(title string) (bool, map[string]string) {
 	strings := make(map[string]string)
 	// async rpc client call
-	_, get_block_count := this.GetBlockCount()
-	strings["get_block_count"] = get_block_count
-	_, get_block := this.GetBlock("78923", "")
-	strings["get_block"] = get_block
+	_, getBlockCount := fetcher.GetBlockCount()
+	strings["get_block_count"] = getBlockCount
+	_, getBlock := fetcher.GetBlock("78923", "")
+	strings["get_block"] = getBlock
 	return true, strings
 }
 
-func (this XMRFetcher) GetBlockCount() (bool, string) {
-	result, err := this.RPCCall("get_block_count", nil)
+func (fetcher CoinXMRFetcher) GetBlockCount() (bool, string) {
+	result, err := fetcher.RPCCall("get_block_count", nil)
 	if err != nil {
 		return false, err.Error()
 	}
 	return true, result
 }
 
-func (this XMRFetcher) GetBlock(height string, hash string) (bool, string) {
+func (fetcher CoinXMRFetcher) GetBlock(height string, hash string) (bool, string) {
 	param := make(map[string]string)
 	param["height"] = height
 	param["hash"] = hash
-	result, err := this.RPCCall("getblock", param)
+	result, err := fetcher.RPCCall("getblock", param)
 	if err != nil {
 		return false, err.Error()
 	}
 	return true, result
 }
 
-func (this XMRFetcher) RPCCall(method string, param interface{}) (message string, err error) {
-	rpcClients := rpc.NewClients(this.NodeConfigs)
+func (fetcher CoinXMRFetcher) RPCCall(method string, param interface{}) (message string, err error) {
+	rpcClients := rpc.NewClients(fetcher.NodeConfigs)
 	message, err = rpcClients.Call(method, param)
 	return message, err
 }

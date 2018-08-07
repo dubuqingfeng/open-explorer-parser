@@ -13,20 +13,22 @@ type GethFetcher struct {
 	fetchers.Fetcher
 }
 
-func (this GethFetcher) Fetch(title string) (bool, string) {
-	fmt.Println("fetch")
-	this.GetBlock("get block")
-	return false, "test"
+func (fetcher GethFetcher) Fetch(title string) (bool, map[string]string) {
+	strings := make(map[string]string)
+	// async rpc client call
+	_, getBlock := fetcher.GetBlock("78923")
+	strings["get_block"] = getBlock
+	return true, strings
 }
 
-func (this GethFetcher) GetBlock(title string) (bool, string) {
+func (fetcher GethFetcher) GetBlock(title string) (bool, string) {
 	fmt.Println(title)
-	this.RPCCall("rpc client call method", "")
+	fetcher.RPCCall("rpc client call method", "")
 	return false, "test"
 }
 
-func (this GethFetcher) RPCCall(method string, param interface{}) {
+func (fetcher GethFetcher) RPCCall(method string, param interface{}) {
 	fmt.Println(method)
-	rpcClients := rpc.NewClients(this.NodeConfigs)
+	rpcClients := rpc.NewClients(fetcher.NodeConfigs)
 	rpcClients.Call(method, param)
 }
