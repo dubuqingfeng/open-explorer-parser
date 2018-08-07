@@ -65,8 +65,6 @@ func main() {
 			go func(processor processors.Processor) {
 				processor.Parse("test")
 			}(value)
-			// select, channel
-			// write to kafka
 		}
 		time.Sleep(1 * time.Second)
 	}

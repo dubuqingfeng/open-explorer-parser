@@ -7,3 +7,7 @@ config.yaml
 producer.log.*
 
 build
+
+
+test.out
+cover_profile.html

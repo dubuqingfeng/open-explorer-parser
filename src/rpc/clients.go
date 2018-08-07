@@ -26,9 +26,6 @@ func (this *rpcClients) Call(method string, param interface{}) (message string, 
 		if err == nil {
 			return result.JSONRPC, nil
 		}
-		// avoid goroutine leak
-		//go func(client *RpcClient, method string) {
-		//}(value, method)
 	}
 	return "test", nil
 }

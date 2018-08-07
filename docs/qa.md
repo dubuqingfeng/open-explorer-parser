@@ -30,4 +30,4 @@ BloomFilter 去重
 
 ### 检索
 
-1.elasticsearch 等第三方工具？
+1.ElasticSearch 等第三方工具？

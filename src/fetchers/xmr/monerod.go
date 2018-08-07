@@ -31,8 +31,9 @@ func (this XMRFetcher) GetBlock(height string) (bool, string) {
 	return false, "test"
 }
 
-func (this XMRFetcher) RPCCall(method string, param interface{}) {
+func (this XMRFetcher) RPCCall(method string, param interface{}) (message string, err error) {
 	fmt.Println(method)
 	rpcClients := rpc.NewClients(this.NodeConfigs)
-	rpcClients.Call(method, param)
+	message, err = rpcClients.Call(method, param)
+	return message, err
 }
