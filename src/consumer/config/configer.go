@@ -4,6 +4,12 @@ import "github.com/jinzhu/configor"
 
 var Config = struct {
 	APPName string `default:"app name"`
+	Log struct {
+		Level    string `default:"info"`
+		Path     string `default:"./logs/"`
+		Filename string `default:"consumer.log"`
+	}
+	EnableCoin []string
 
 	Redis struct {
 		Address  string
@@ -18,6 +24,6 @@ var Config = struct {
 	}
 }{}
 
-func InitConfig() {
-	configor.Load(&Config, "./config/producer.json")
+func InitConfig(files string) {
+	configor.Load(&Config, files)
 }
