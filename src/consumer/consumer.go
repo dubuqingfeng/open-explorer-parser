@@ -8,7 +8,6 @@ import (
 	"gopkg.in/urfave/cli.v2"
 	"github.com/dubuqingfeng/explorer-parser/src/utils"
 	log "github.com/sirupsen/logrus"
-	"time"
 	"github.com/dubuqingfeng/explorer-parser/src/consumer/filters"
 )
 
@@ -58,12 +57,13 @@ func main() {
 			filter.Filter("test")
 		}(value)
 	}
-	time.Sleep(1 * time.Second)
 }
 
 func newFilter(coin string) filters.Filter {
 	switch coin {
 	case "btc":
+		return filters.NewBTCFilter()
+	case "xmr":
 		return filters.NewBTCFilter()
 	}
 	return nil

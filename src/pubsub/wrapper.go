@@ -6,6 +6,7 @@ import (
 	"github.com/dubuqingfeng/explorer-parser/src/pubsub/rediscluster"
 	"github.com/dubuqingfeng/explorer-parser/src/models/configs"
 	"github.com/dubuqingfeng/explorer-parser/src/pubsub/redis"
+	"fmt"
 )
 
 type DataWrapper struct {
@@ -40,4 +41,19 @@ func (wrapper *DataWrapper) redisPublish(data map[string]string) {
 			redis.Publish(value, prefixKey, data)
 		}(value, wrapper.prefixKey)
 	}
+}
+func (wrapper *DataWrapper) Subscribe(channel string) {
+	switch wrapper.pubType {
+	case "kafka":
+		log.Debug(channel)
+	case "redis":
+		wrapper.redisSubscribe(channel)
+	case "redis-cluster":
+		log.Debug(channel)
+	}
+}
+func (wrapper *DataWrapper) redisSubscribe(channel string) {
+	pubsub := redis.Subscribe(channel)
+	msg,_ := pubsub.Receive()
+	fmt.Println("Receive from channel:", msg)
 }
