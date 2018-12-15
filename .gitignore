@@ -5,9 +5,9 @@ consumer.json
 config.json
 config.yaml
 producer.log.*
+consumer.log.*
 
 build
-
 
 test.out
 cover_profile.html
