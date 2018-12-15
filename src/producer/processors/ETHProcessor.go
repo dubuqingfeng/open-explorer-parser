@@ -26,7 +26,7 @@ func (processor *ETHProcessor) Parse(message string) bool {
 		result, reason := gethFetcher.Fetch("test")
 		log.WithField("result", result).WithField("reason", reason).Debug("test")
 		// send to kafka
-		wrapper := pubsub.NewDataWrapper("ETH", config.Config.ETH.Network, config.Config.ETH.PublishType, config.Config.ETH.PubConn)
+		wrapper := pubsub.NewDataWrapper("ETH", config.Config.ETH.Network, config.Config.ETH.PubConn)
 		wrapper.Publish(reason)
 	}()
 	return false

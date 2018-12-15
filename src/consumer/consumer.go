@@ -53,9 +53,7 @@ func main() {
 
 	for _, value := range multiCoin {
 		// go func
-		go func(filter filters.Filter) {
-			filter.Filter("test")
-		}(value)
+		go value.Filter("test")
 	}
 }
 

@@ -25,7 +25,7 @@ func (processor *XMRProcessor) Parse(message string) bool {
 		// Returns an array of Object
 		result, reason := monerod.Fetch("test")
 		if result {
-			wrapper := pubsub.NewDataWrapper("XMR", config.Config.XMR.Network, config.Config.XMR.PublishType, config.Config.XMR.PubConn)
+			wrapper := pubsub.NewDataWrapper("XMR", config.Config.XMR.Network, config.Config.XMR.PubConn)
 			wrapper.Publish(reason)
 		}
 	}()

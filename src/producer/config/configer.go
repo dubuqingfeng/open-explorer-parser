@@ -16,7 +16,6 @@ type NodeConfig struct {
 type CoinConfig struct {
 	Nodes       []NodeConfig
 	Network     string
-	PublishType string
 	PubConn     []configs.PubConnConfig
 }
 
@@ -27,7 +26,6 @@ var Config = struct {
 		Path     string `default:"./logs/"`
 		Filename string `default:"producer.log"`
 	}
-	PublishType string
 	PubConn     []configs.PubConnConfig
 	EnableCoin  []string
 	ETH         CoinConfig

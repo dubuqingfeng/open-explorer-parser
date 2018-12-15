@@ -3,8 +3,8 @@ FROM golang:alpine AS build-env
 ADD . /go/src/github.com/github.com/dubuqingfeng/explorer_parser/src
 # build
 RUN cd /go/src/github.com/github.com/dubuqingfeng/explorer_parser/src && \
-    go build -v -o /src/bin/notice-web web/web.go && \
-    go build -v -o /src/bin/notice-push push/pusher.go
+    go build -v -o /src/bin/consumer consumer/consumer.go && \
+    go build -v -o /src/bin/producer producer/producer.go
 
 FROM alpine
 RUN apk --no-cache add openssl ca-certificates

@@ -58,9 +58,7 @@ func main() {
 	for {
 		for _, value := range multiCoin {
 			// go func
-			go func(processor processors.Processor) {
-				processor.Parse("test")
-			}(value)
+			go value.Parse("test")
 		}
 		time.Sleep(1 * time.Second)
 	}

@@ -16,13 +16,11 @@ func NewBTCFilter() *BTCFilter {
 
 func (filter *BTCFilter) Filter(message string) bool {
 	// Load Filter
-	go func() {
-		wrapper := pubsub.NewDataWrapper("XMR", config.Config.XMR.Network, config.Config.XMR.PublishType, config.Config.XMR.PubConn)
-		wrapper.Subscribe("channel")
-		//pubsub := client.Subscribe(channel)
-		//msg,_ := pubsub.Receive()
-		//fmt.Println("Receive from channel:", msg)
-		//done <- struct {}{}
-	}()
+	for {
+		go func() {
+			wrapper := pubsub.NewDataWrapper("XMR", config.Config.XMR.Network, config.Config.XMR.PubConn)
+			wrapper.Subscribe("channel")
+		}()
+	}
 	return false
 }
