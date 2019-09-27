@@ -1,14 +1,14 @@
 package main
 
 import (
-	"github.com/dubuqingfeng/explorer-parser/src/consumer/config"
-	"fmt"
 	"flag"
-	"os"
-	"gopkg.in/urfave/cli.v2"
+	"fmt"
+	"github.com/dubuqingfeng/explorer-parser/src/consumer/config"
+	"github.com/dubuqingfeng/explorer-parser/src/consumer/filters"
 	"github.com/dubuqingfeng/explorer-parser/src/utils"
 	log "github.com/sirupsen/logrus"
-	"github.com/dubuqingfeng/explorer-parser/src/consumer/filters"
+	"gopkg.in/urfave/cli.v2"
+	"os"
 )
 
 func init() {

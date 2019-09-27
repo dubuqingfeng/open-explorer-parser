@@ -1,10 +1,10 @@
 package eth
 
 import (
-	"github.com/dubuqingfeng/explorer-parser/src/fetchers"
 	"fmt"
-	"github.com/dubuqingfeng/explorer-parser/src/rpc"
+	"github.com/dubuqingfeng/explorer-parser/src/fetchers"
 	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
+	"github.com/dubuqingfeng/explorer-parser/src/rpc"
 )
 
 type GethFetcher struct {

@@ -42,9 +42,9 @@ func init() {
 
 func main() {
 	log.Info("producer start")
-	fmt.Printf("config: %#v\n", config.Config.APPName)
+	log.Info("config: %#v\n", config.Config.APPName)
 	// Load the processor by configuration
-	fmt.Printf("enable processor: %#v\n", config.Config.EnableCoin)
+	log.Info("enable processor: %#v\n", config.Config.EnableCoin)
 
 	multiCoin := make([]processors.Processor, 0)
 

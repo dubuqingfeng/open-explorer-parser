@@ -1,8 +1,8 @@
 package config
 
 import (
-	"github.com/jinzhu/configor"
 	"github.com/dubuqingfeng/explorer-parser/src/models/configs"
+	"github.com/jinzhu/configor"
 )
 
 type CoinConfig struct {
@@ -20,7 +20,7 @@ type DB struct {
 
 var Config = struct {
 	APPName string `default:"app name"`
-	Log struct {
+	Log     struct {
 		Level    string `default:"info"`
 		Path     string `default:"./logs/"`
 		Filename string `default:"consumer.log"`

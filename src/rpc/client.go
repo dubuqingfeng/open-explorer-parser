@@ -1,15 +1,15 @@
 package rpc
 
 import (
-	"net/http"
-	"io/ioutil"
-	log "github.com/sirupsen/logrus"
-	"encoding/json"
-	"time"
 	"bytes"
-	"github.com/pkg/errors"
+	"encoding/json"
 	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
 	"github.com/gabstv/httpdigest"
+	"github.com/pkg/errors"
+	log "github.com/sirupsen/logrus"
+	"io/ioutil"
+	"net/http"
+	"time"
 )
 
 type RpcClient struct {

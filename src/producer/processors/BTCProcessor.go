@@ -1,9 +1,9 @@
 package processors
 
 import (
-	log "github.com/sirupsen/logrus"
 	"github.com/dubuqingfeng/explorer-parser/src/fetchers/btc"
 	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
+	log "github.com/sirupsen/logrus"
 )
 
 type BTCProcessor struct {

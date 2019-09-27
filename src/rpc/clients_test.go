@@ -10,7 +10,7 @@ func TestNewClients(t *testing.T) {
 		name string
 		want []*RpcClient
 	}{
-	// TODO: Add test cases.
+		// TODO: Add test cases.
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -38,7 +38,7 @@ func TestRpcClient_Call(t *testing.T) {
 		wantMessage string
 		wantErr     bool
 	}{
-	// TODO: Add test cases.
+		// TODO: Add test cases.
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

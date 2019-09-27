@@ -1,9 +1,9 @@
 package db
 
 import (
+	"github.com/dubuqingfeng/explorer-parser/src/consumer/config"
 	"github.com/go-redis/redis"
 	log "github.com/sirupsen/logrus"
-	"github.com/dubuqingfeng/explorer-parser/src/consumer/config"
 )
 
 var (

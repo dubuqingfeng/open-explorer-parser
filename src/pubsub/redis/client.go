@@ -1,9 +1,9 @@
 package redis
 
 import (
+	"github.com/dubuqingfeng/explorer-parser/src/models/configs"
 	"github.com/go-redis/redis"
 	log "github.com/sirupsen/logrus"
-	"github.com/dubuqingfeng/explorer-parser/src/models/configs"
 )
 
 var (

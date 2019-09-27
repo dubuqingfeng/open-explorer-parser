@@ -1,12 +1,12 @@
 package utils
 
 import (
-	"time"
 	"github.com/lestrrat-go/file-rotatelogs"
+	"github.com/pkg/errors"
 	"github.com/rifflock/lfshook"
 	log "github.com/sirupsen/logrus"
 	"path"
-	"github.com/pkg/errors"
+	"time"
 )
 
 // Init Log

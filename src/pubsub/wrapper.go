@@ -1,11 +1,11 @@
 package pubsub
 
 import (
-	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
-	log "github.com/sirupsen/logrus"
-	"github.com/dubuqingfeng/explorer-parser/src/pubsub/rediscluster"
 	"github.com/dubuqingfeng/explorer-parser/src/models/configs"
+	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
 	"github.com/dubuqingfeng/explorer-parser/src/pubsub/redis"
+	"github.com/dubuqingfeng/explorer-parser/src/pubsub/rediscluster"
+	log "github.com/sirupsen/logrus"
 )
 
 const (

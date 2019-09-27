@@ -2,9 +2,9 @@ package processors
 
 import (
 	"github.com/dubuqingfeng/explorer-parser/src/fetchers/eth"
-	log "github.com/sirupsen/logrus"
 	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
 	"github.com/dubuqingfeng/explorer-parser/src/pubsub"
+	log "github.com/sirupsen/logrus"
 )
 
 type ETHProcessor struct {
