@@ -4,13 +4,13 @@ import (
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/urfave/cli.v2"
 
-	"fmt"
-	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
-	"github.com/dubuqingfeng/explorer-parser/src/producer/processors"
-	"time"
-	"os"
 	"flag"
-	"github.com/dubuqingfeng/explorer-parser/src/utils"
+	"fmt"
+	"github.com/dubuqingfeng/explorer-parser/producer/config"
+	"github.com/dubuqingfeng/explorer-parser/producer/processors"
+	"github.com/dubuqingfeng/explorer-parser/utils"
+	"os"
+	"time"
 )
 
 func init() {

@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/dubuqingfeng/explorer-parser/src/consumer/config"
-	"github.com/dubuqingfeng/explorer-parser/src/consumer/filters"
-	"github.com/dubuqingfeng/explorer-parser/src/utils"
+	"github.com/dubuqingfeng/explorer-parser/consumer/config"
+	"github.com/dubuqingfeng/explorer-parser/consumer/filters"
+	"github.com/dubuqingfeng/explorer-parser/utils"
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/urfave/cli.v2"
 	"os"

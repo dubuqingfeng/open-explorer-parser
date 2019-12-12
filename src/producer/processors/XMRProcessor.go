@@ -1,9 +1,9 @@
 package processors
 
 import (
-	"github.com/dubuqingfeng/explorer-parser/src/fetchers/xmr"
-	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
-	"github.com/dubuqingfeng/explorer-parser/src/pubsub"
+	"github.com/dubuqingfeng/explorer-parser/fetchers/xmr"
+	"github.com/dubuqingfeng/explorer-parser/producer/config"
+	"github.com/dubuqingfeng/explorer-parser/pubsub"
 )
 
 type XMRProcessor struct {

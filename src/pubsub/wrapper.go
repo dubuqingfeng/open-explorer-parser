@@ -1,10 +1,10 @@
 package pubsub
 
 import (
-	"github.com/dubuqingfeng/explorer-parser/src/models/configs"
-	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
-	"github.com/dubuqingfeng/explorer-parser/src/pubsub/redis"
-	"github.com/dubuqingfeng/explorer-parser/src/pubsub/rediscluster"
+	"github.com/dubuqingfeng/explorer-parser/models/configs"
+	"github.com/dubuqingfeng/explorer-parser/producer/config"
+	"github.com/dubuqingfeng/explorer-parser/pubsub/redis"
+	"github.com/dubuqingfeng/explorer-parser/pubsub/rediscluster"
 	log "github.com/sirupsen/logrus"
 )
 

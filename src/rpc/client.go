@@ -3,7 +3,7 @@ package rpc
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
+	"github.com/dubuqingfeng/explorer-parser/producer/config"
 	"github.com/gabstv/httpdigest"
 	"github.com/pkg/errors"
 	log "github.com/sirupsen/logrus"

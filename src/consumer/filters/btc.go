@@ -1,8 +1,8 @@
 package filters
 
 import (
-	"github.com/dubuqingfeng/explorer-parser/src/consumer/config"
-	"github.com/dubuqingfeng/explorer-parser/src/pubsub"
+	"github.com/dubuqingfeng/explorer-parser/consumer/config"
+	"github.com/dubuqingfeng/explorer-parser/pubsub"
 )
 
 type BTCFilter struct {

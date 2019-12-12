@@ -1,9 +1,9 @@
 package processors
 
 import (
-	"github.com/dubuqingfeng/explorer-parser/src/fetchers/eth"
-	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
-	"github.com/dubuqingfeng/explorer-parser/src/pubsub"
+	"github.com/dubuqingfeng/explorer-parser/fetchers/eth"
+	"github.com/dubuqingfeng/explorer-parser/producer/config"
+	"github.com/dubuqingfeng/explorer-parser/pubsub"
 	log "github.com/sirupsen/logrus"
 )
 

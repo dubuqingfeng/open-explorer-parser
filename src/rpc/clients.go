@@ -1,7 +1,7 @@
 package rpc
 
 import (
-	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
+	"github.com/dubuqingfeng/explorer-parser/producer/config"
 )
 
 type rpcClients struct {

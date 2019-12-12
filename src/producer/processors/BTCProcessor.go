@@ -1,8 +1,8 @@
 package processors
 
 import (
-	"github.com/dubuqingfeng/explorer-parser/src/fetchers/btc"
-	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
+	"github.com/dubuqingfeng/explorer-parser/fetchers/btc"
+	"github.com/dubuqingfeng/explorer-parser/producer/config"
 	log "github.com/sirupsen/logrus"
 )
 
