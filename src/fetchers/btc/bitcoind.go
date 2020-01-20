@@ -2,9 +2,9 @@ package btc
 
 import (
 	"fmt"
-	"github.com/dubuqingfeng/explorer-parser/src/fetchers"
-	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
-	"github.com/dubuqingfeng/explorer-parser/src/rpc"
+	"github.com/dubuqingfeng/explorer-parser/fetchers"
+	"github.com/dubuqingfeng/explorer-parser/producer/config"
+	"github.com/dubuqingfeng/explorer-parser/rpc"
 )
 
 type Bitcoind struct {

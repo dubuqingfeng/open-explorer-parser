@@ -1,8 +1,8 @@
 package eth
 
 import (
-	"github.com/dubuqingfeng/explorer-parser/src/fetchers"
-	"github.com/dubuqingfeng/explorer-parser/src/producer/config"
+	"github.com/dubuqingfeng/explorer-parser/fetchers"
+	"github.com/dubuqingfeng/explorer-parser/producer/config"
 )
 
 type GethTxFetcher struct {
