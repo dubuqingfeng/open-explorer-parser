@@ -1,6 +1,7 @@
 package pubsub
 
 import (
+	"fmt"
 	"github.com/dubuqingfeng/explorer-parser/models/configs"
 	"github.com/dubuqingfeng/explorer-parser/producer/config"
 	"github.com/dubuqingfeng/explorer-parser/pubsub/redis"
@@ -12,6 +13,7 @@ const (
 	PublishTypeKafka        = "kafka"
 	PublishTypeRedis        = "redis"
 	PublishTypeRedisCluster = "redis-cluster"
+	PublishTypeBadger       = "badger-db"
 )
 
 type DataWrapper struct {
@@ -33,9 +35,12 @@ func (wrapper *DataWrapper) Publish(data map[string]string) {
 		case PublishTypeKafka:
 			log.Debug(data)
 		case PublishTypeRedis:
+			fmt.Println(data)
 			go redis.Publish(value, wrapper.prefixKey, data)
 		case PublishTypeRedisCluster:
 			rediscluster.Client.Publish("test", "test")
+		case PublishTypeBadger:
+			fmt.Println(data)
 		}
 	}
 }

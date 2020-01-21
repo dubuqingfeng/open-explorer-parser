@@ -35,6 +35,7 @@ var Config = struct {
 	BTC        CoinConfig
 }{}
 
+// init config.
 func InitConfig(files string) {
 	if err := configor.Load(&Config, files); err != nil {
 		panic(err)

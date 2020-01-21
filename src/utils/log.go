@@ -11,6 +11,10 @@ import (
 
 // Init Log
 func InitLog(logLevel string, path string, filename string) {
+	formatter := &log.TextFormatter{
+		FullTimestamp: true,
+	}
+	log.SetFormatter(formatter)
 	level, err := log.ParseLevel(logLevel)
 	if err != nil {
 		log.Errorf("init logger error. %+v", errors.WithStack(err))
@@ -35,7 +39,7 @@ func ConfigLocalFilesystemLogger(logPath string, logFileName string, maxAge time
 	}
 
 	lfHook := lfshook.NewHook(lfshook.WriterMap{
-		log.DebugLevel: writer,
+		log.DebugLevel: writer, // 为不同级别设置不同的输出目的
 		log.InfoLevel:  writer,
 		log.WarnLevel:  writer,
 		log.ErrorLevel: writer,

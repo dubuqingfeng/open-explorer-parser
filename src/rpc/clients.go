@@ -28,5 +28,5 @@ func (this *rpcClients) Call(method string, param interface{}) (message string, 
 		//go func(client *RpcClient, method string) {
 		//}(value, method)
 	}
-	return "test", nil
+	return "", nil
 }

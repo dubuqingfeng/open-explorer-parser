@@ -17,7 +17,7 @@ func (fetcher CoinXMRFetcher) Fetch(title string) (bool, map[string]string) {
 	// async rpc client call
 	_, getBlockCount := fetcher.GetBlockCount()
 	strings["get_block_count"] = getBlockCount
-	_, getBlock := fetcher.GetBlock("78923", "")
+	_, getBlock := fetcher.GetBlock("18923", "")
 	strings["get_block"] = getBlock
 	return true, strings
 }

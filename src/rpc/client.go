@@ -100,7 +100,6 @@ func (this *RpcClient) call(method string, params interface{}) (response rpcResp
 	if err != nil {
 		return rpcResponse{}, err
 	}
-	//fmt.Println(string(body))
 	err = json.Unmarshal(body, &response)
 	if err != nil {
 		return rpcResponse{}, err
@@ -124,7 +123,7 @@ func (this *RpcClient) DoRequest(timer *time.Timer, req *http.Request) (*http.Re
 	case r := <-done:
 		return r.response, r.err
 	case <-timer.C:
-		return nil, errors.New("Timeout")
+		return nil, errors.New(req.URL.RawQuery + "Timeout")
 	}
 }
 

@@ -3,6 +3,7 @@ package main
 import (
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/urfave/cli.v2"
+	"strings"
 
 	"flag"
 	"fmt"
@@ -41,15 +42,15 @@ func init() {
 }
 
 func main() {
-	log.Info("producer start")
-	log.Info("config: %#v\n", config.Config.APPName)
-	// Load the processor by configuration
-	log.Info("enable processor: %#v\n", config.Config.EnableCoin)
+	log.Infof("producer start, app name: %#v", config.Config.APPName)
+	// Load the processor by configuration.
+	log.Infof("enable processor: %#v", config.Config.EnableCoin)
 
 	multiCoin := make([]processors.Processor, 0)
 
+	// So it need to restart to reload the configuration.
 	for _, value := range config.Config.EnableCoin {
-		processor := newProcessor(value)
+		processor := newProcessor(strings.ToLower(value))
 		if processor != nil {
 			multiCoin = append(multiCoin, processor)
 		}
@@ -57,7 +58,6 @@ func main() {
 
 	for {
 		for _, value := range multiCoin {
-			// go func
 			go value.Parse("test")
 		}
 		time.Sleep(1 * time.Second)

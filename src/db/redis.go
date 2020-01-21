@@ -10,7 +10,7 @@ var (
 	Client *redis.Client
 )
 
-func Connect(db string, address []string) {
+func Connect() {
 	redisClient := redis.NewClient(&redis.Options{
 		Addr:     config.Config.Redis.Address,
 		Password: config.Config.Redis.Password,

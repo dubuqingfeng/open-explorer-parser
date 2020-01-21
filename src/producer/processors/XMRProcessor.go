@@ -7,9 +7,12 @@ import (
 )
 
 type XMRProcessor struct {
-	coinType string
-	status   int
-	reason   string
+	coin   string
+	status int
+	reason string
+	height int
+	// how to rollback
+	hash string
 }
 
 func NewXMRProcessor() *XMRProcessor {
@@ -18,7 +21,6 @@ func NewXMRProcessor() *XMRProcessor {
 
 func (processor *XMRProcessor) Parse(message string) bool {
 	// Load Fetchers
-	// ping Database
 	go func() {
 		// lock
 		monerod := xmr.CoinXMRFetcher{NodeConfigs: config.Config.XMR.Nodes}
